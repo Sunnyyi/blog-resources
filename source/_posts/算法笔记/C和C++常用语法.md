@@ -50,6 +50,8 @@ int main(){
 <font color=Crimson>单精度(float): </font> 有效精度6-7位。
 <font color=Crimson>双精度(double): </font> 有效精度15-16位,因此机试中碰到浮点型一般都是用double来存储。
 > 浮点数<font>在经过容易损失精度得计算后</font>，计算结果总是不精确得，有一定得误差，故需要引入一个极小数eps来修正误差，从而进行各种比较操作，可以取eps为10<sup>-8</sup>,变量b的浮动范围为[b-eps,b+eps],各种比较操作的宏定义如下：
+
+a==b:![a==b](4.png) a>b:![a>b](5.png) a<b:![a<b](6.png) a>=b:![a>=b](7.png) a<=b:![a<=b](8.png)
 ```c
 #include <stdio.h>
 #include <math.h>
