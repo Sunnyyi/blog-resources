@@ -224,7 +224,7 @@ typedef long long LL;
 ```
 ## 6. 常用math函数
 
-使用时需要添加头文件math.h。
+<font color=Crmison>除了abs在C编译器中需要添加stdlib.h,在C++中需要添加cmath外，其它数学函数使用时需要添加头文件math.h和cmath。注意!</font>
 ```c
 double fabs(double x); // double型变量取绝对值
 int abs(int x); //int型变量取绝对值
@@ -246,7 +246,7 @@ double acos(double x);
 double atan(double x);
 
 double round(double x); //对x四舍五入到整数位，以%d格式printf时需取整(int)
-double round(double x){return (x>0.0) ? floor(x+0.5) : ceil(x-0.5);}  //有些编译器不支持round函数，可利用floor和ceil写一个。
+double round(double x){return (x>0.0) ? floor(x+0.5) : ceil(x-0.5);}  //有些编译器如PAT不支持round函数，可利用floor和ceil写一个。
 ```
 
 # 四、选择结构
@@ -484,15 +484,15 @@ struct Name {
 
 ## 1. 结构体的定义
 ```c
-struct studentInfo {
+struct StudentInfo {
     int id;
     char gender;
     char name[20];
     char major[20];
-    studentInfo* next;  //结构体内不能定义自己，会引起循环定义问题，但可以定义自身类型的指针变量，它可以定义除自身外的任何数据类型。注意！结构体指针变量不能在匿名结构体内定义。
+    StudentInfo* next;  //结构体内不能定义自己，会引起循环定义问题，但可以定义自身类型的指针变量，它可以定义除自身外的任何数据类型。注意！结构体指针变量不能在匿名结构体内定义。
 }Alice,stu[1000];  //直接定义结构体变量
 
-studentInfo Bob,*p;
+StudentInfo Bob,*p;
 ```
 
 ## 2. 访问结构体内的元素
@@ -512,19 +512,19 @@ p->next;
 ## 3. 结构体的初始化和赋值
 结构体使用构造函数来进行初始化，对于一个普通定义的结构体，其内部会生成一个<font color=Crmison>默认构造函数(但不可见)</font>，如studentInfo(){}，正是由于默认构造函数的存在才可以直接定义结构体变量而不进行初始化，因为它没有让用户提供任何初始化参数。
 ```c
-struct { //匿名结构体
+struct StudentInfo{ 
     int id;
     char gender;
 
-    studentInfo(int _id, char _gender){   //自定义构造函数
+    StudentInfo(int _id, char _gender){   //自定义构造函数
         id=_id;
         gender=_gender;
     }
 
-    studentInfo(int _id, char _gender): id(_id), gender(_gender) {}   //构造函数的简化写法
+    StudentInfo(int _id, char _gender): id(_id), gender(_gender) {}   //构造函数的简化写法
 }stu[3]={1,'M',2,'F'};
 
-studentInfo stu = studentInfo(10086,'M');   //初始化结构体
+StudentInfo stu = StudentInfo(10086,'M');   //初始化结构体
 stu[2]=stu;  //C++中相同类型结构体之间可以直接赋值，而C语言中不可以。
 ```
 <font color=Crmison>注意！若自定义了构造函数而不想进行初始化，则需要手动添加默认构造函数。</font>只要参数和类型不完全相同，就可以定义任意多个构造函数，以适应不同的初始化场合。
