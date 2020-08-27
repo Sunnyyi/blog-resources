@@ -145,7 +145,7 @@ n = m = 5;
 ### 2.1 scanf("格式控制",变量地址)
 ```c
 scanf("%d:%d:%d",&hh,&mm,&ss);  //输入hh:mm:ss
-scanf("%d,%lf%c",&a.&b,&c);  //输入a,b,c
+scanf("%d,%lf%c",&a,&b,&c);  //输入a,b,c
 scanf("%d%d",&a,&b); //输入a b
 ```
 scanf函数的格式控制符如下图所示：
@@ -185,7 +185,7 @@ printf("\\"); //输出\
 >C++中的输入与输出函数cin与cout
 ```c
 #include <iostream>
-#include <cstring>  //string
+#include <string>  //string
 #include <iomanip> //控制double型精度
 
 using namespace std;
@@ -224,7 +224,7 @@ typedef long long LL;
 ```
 ## 6. 常用math函数
 
-<font color=Crmison>除了abs在C编译器中需要添加stdlib.h,在C++中需要添加cmath外，其它数学函数使用时需要添加头文件math.h和cmath。注意!</font>
+<font color=Crmison>除了abs在C编译器中需要添加stdlib.h外，其它数学函数使用时需要添加头文件math.h和cmath。注意!</font>
 ```c
 double fabs(double x); // double型变量取绝对值
 int abs(int x); //int型变量取绝对值
@@ -327,6 +327,10 @@ break：跳出循环体。continue：跳出当前循环，即continue后面的�
 # 六、数组
 
 如果数组大小较大（大概10<sup>6</sup>级别），则需要将其定义在主函数外面，否则会使程序异常退出，因为函数内部申请的局部变量来自系统栈，允许申请的空间较小；而函数外部申请的全局变量来自静态存储区，允许申请的空间较大。
+数组的长度计算：
+```c
+int length = sizeof(arr) / sizeof(arr[0]);  //数组占内存总空间，除以单个元素占内存空间大小
+```
 ## 1. 一维数组
 ```c
 数据类型 数组名[数组大小];  //数组大小必须是整数常量，不可以是变量。
@@ -354,7 +358,12 @@ char str[15] = {'G','o','o','d',' ','s','t','o','r','y','!'};
 char str[15] = "Good story!";  //直接赋值字符串，注意！仅限于初始化，程序其他位置不允许这样直接赋值整个字符串。
 
 ```
-
+<font color=Crmison>注意！定义了数组或字符指针之后，需要做一个初始化，否则里面将是随机值，以后将无法判断改字符串是否为空。</font>
+```c
+memset(数组名,‘\0’,sizeof(数组名));
+ if (strlen(str) == 0)  //推荐判空方式
+ if (str[0] == '\0')  /避免使用，容易crash
+```
 2. 输入输出：
 ```c
 char str[10];
