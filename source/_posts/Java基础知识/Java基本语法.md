@@ -3,7 +3,7 @@ title: Java基本语法
 tags: [Java]
 categories: Java
 top: true
-date: 2020-4-20 12:05:33
+date: 2020-4-28 12:05:33
 ---
 
 # 一、Java应用程序的结构
@@ -88,7 +88,7 @@ UTF-16 编码采用不同长度(2字节和4字节)的编码表示所有 Unicode 
 ![UTF-16编码示例](UTF-16.png)
 
 ### 3.2 UTF-8字符编码表
-UTF-8编码也采用不同字节编码所有U你从的码点(1字节-6字节)参见https://zhuanlan.zhihu.com/p/72254734
+UTF-8编码也采用不同字节编码所有Unicode码点(1字节-6字节)参见https://zhuanlan.zhihu.com/p/72254734
 <font color=Crmison>UTF-16编码规则表：</font>
 ![UTF-8编码规则表](UTF-8.png)
 <font color=Crmison>UTF-16编码示例：</font>
@@ -213,9 +213,10 @@ b?1:0;   //极少情况下使用
 
 ## 4. 结合赋值运算符
 `+= -= *= /= %=`
+`%`:<font color=Crmison>取模运算，结果的符号和被除数符号一致</font>
 ```java
 int x;
-x += 3.5; //等价 (int)(x+3.5) 运算符得到一个值， 其类型与左侧操作数的类型不同， 就会发生强制类型转换。
+x += 3.5; //等价 (int)(x+3.5) 运算符得到一个值， 其类型与左侧操作数的类型不同，就会发生强制类型转换。
 ```
 
 ## 5. 自增与自减运算符
@@ -239,6 +240,7 @@ n--     //不推荐使用++,容易产生bug。
 2. <font color=Crmison>`>>>` 运算符会用 0 填充高位，这与`>>`不同，它会用符号位填充高位。不存在`<<<`运算符。</font>
 3. <font color=Crmison>移位运算符的右操作数要完成模 32 的运算（除非左操作数是 long 类型， 在这种情况下需要对右操作数模 64 )。</font>
 4. C/C++中`>>`对于负数生成的结果可能会依赖于具体的实现。Java 则消除了这种不确定性。
+
 ```java
 (n & (1 << 3)) >> 3;
 
@@ -414,6 +416,7 @@ PrintWriter out = new PrintWriter("myfile.txt", "UTF-8");
 1. 块，即复合语句，是由一对大括号括起来的若干条简单的 Java 语句。
 2. 一个块可以嵌套在另一个块中。
 3. 但是，<font color=Crmison>不能在嵌套的两个块中声明同名的变量，否则无法通过编译。</font>
+
 ```java
 {
     int n;
@@ -536,6 +539,9 @@ Biglnteger d = c.multiply(b.add(Biglnteger.valueOf(2))); // d = c * (b + 2) 大�
 int[] a = new int[100];  //也可用int a[];声明数组，但是不推荐，创建一个数字数组则所有元素会被初始化为0
 boolean[] b = new boolean[100]; //元素初始化为 false
 String[] names = new String[10]; //对象数组的元素则初始化为一个特殊值 null, 这表示这些元素（还）未存放任何对象。
+
+int actualSize = . . .;
+Employee[] staff = new Employee[actualSize];   //Java允许在运行时确定数组的大小。
 
 a.length; //获取数组中元素个数
 
